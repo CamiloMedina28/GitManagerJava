@@ -11,4 +11,22 @@
         <maven.compiler.target>20</maven.compiler.target>
         <exec.mainClass>camilo_medina.gitmanager.GitManager</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.45.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.pityka</groupId>
+            <artifactId>fileutils_2.13</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-shared-utils</artifactId>
+            <version>3.3.4</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>

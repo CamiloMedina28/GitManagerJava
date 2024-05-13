@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package camilo_medina.gitmanager.GUI;
-import camilo_medina.gitmanager.SelectDir;
-import java.io.File;
+import camilo_medina.gitmanager.execCommand.SelectDir;
 
 /**
  *
@@ -31,19 +30,22 @@ public class MainView extends javax.swing.JFrame {
         Background = new javax.swing.JPanel();
         Sidebar = new javax.swing.JPanel();
         SeleccionarDirBoton = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        TituloContainer = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        MainBarContainer = new javax.swing.JPanel();
+        DirectorioLabel = new javax.swing.JLabel();
+        RutaDirectorio = new javax.swing.JLabel();
+        Content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Sidebar.setBackground(new java.awt.Color(0, 23, 31));
 
-        SeleccionarDirBoton.setBackground(new java.awt.Color(213, 18, 64));
+        SeleccionarDirBoton.setBackground(new java.awt.Color(0, 23, 31));
         SeleccionarDirBoton.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         SeleccionarDirBoton.setForeground(new java.awt.Color(255, 255, 255));
         SeleccionarDirBoton.setText("SELECCIONAR DIRECTORIO");
+        SeleccionarDirBoton.setBorder(null);
         SeleccionarDirBoton.setBorderPainted(false);
         SeleccionarDirBoton.setContentAreaFilled(false);
         SeleccionarDirBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -65,51 +67,69 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(SeleccionarDirBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        TituloContainer.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel1.setText("Git Graphic Manager");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout TituloContainerLayout = new javax.swing.GroupLayout(TituloContainer);
+        TituloContainer.setLayout(TituloContainerLayout);
+        TituloContainerLayout.setHorizontalGroup(
+            TituloContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TituloContainerLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        TituloContainerLayout.setVerticalGroup(
+            TituloContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TituloContainerLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(0, 52, 89));
+        MainBarContainer.setBackground(new java.awt.Color(0, 52, 89));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        DirectorioLabel.setBackground(new java.awt.Color(255, 255, 255));
+        DirectorioLabel.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        DirectorioLabel.setForeground(new java.awt.Color(255, 255, 255));
+        DirectorioLabel.setText("Directorio:");
+
+        RutaDirectorio.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
+        RutaDirectorio.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout MainBarContainerLayout = new javax.swing.GroupLayout(MainBarContainer);
+        MainBarContainer.setLayout(MainBarContainerLayout);
+        MainBarContainerLayout.setHorizontalGroup(
+            MainBarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainBarContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DirectorioLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RutaDirectorio, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        MainBarContainerLayout.setVerticalGroup(
+            MainBarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainBarContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(MainBarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DirectorioLabel)
+                    .addComponent(RutaDirectorio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        Content.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
+        Content.setLayout(ContentLayout);
+        ContentLayout.setHorizontalGroup(
+            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 830, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ContentLayout.setVerticalGroup(
+            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 460, Short.MAX_VALUE)
         );
 
@@ -120,19 +140,19 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addComponent(Sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(TituloContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MainBarContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TituloContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MainBarContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,7 +171,8 @@ public class MainView extends javax.swing.JFrame {
 
     private void SeleccionarDirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarDirBotonActionPerformed
         // TODO add your handling code here:
-        File seleccion = SelectDir.seleccion();
+        String seleccion = SelectDir.seleccion();
+        RutaDirectorio.setText(seleccion);
     }//GEN-LAST:event_SeleccionarDirBotonActionPerformed
 
     /**
@@ -191,11 +212,13 @@ public class MainView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
+    private javax.swing.JPanel Content;
+    private javax.swing.JLabel DirectorioLabel;
+    private javax.swing.JPanel MainBarContainer;
+    private javax.swing.JLabel RutaDirectorio;
     private javax.swing.JButton SeleccionarDirBoton;
     private javax.swing.JPanel Sidebar;
+    private javax.swing.JPanel TituloContainer;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }
