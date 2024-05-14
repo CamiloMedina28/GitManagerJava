@@ -4,6 +4,8 @@
  */
 package camilo_medina.gitmanager.GUI;
 import camilo_medina.gitmanager.execCommand.SelectDir;
+import camilo_medina.gitmanager.DBAdmin.LeerComandos;
+import camilo_medina.gitmanager.DBAdmin.ParametroInvalidoException;
 
 /**
  *
@@ -28,109 +30,143 @@ public class MainView extends javax.swing.JFrame {
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
-        Sidebar = new javax.swing.JPanel();
-        SeleccionarDirBoton = new javax.swing.JButton();
-        TituloContainer = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        MainBarContainer = new javax.swing.JPanel();
-        DirectorioLabel = new javax.swing.JLabel();
-        RutaDirectorio = new javax.swing.JLabel();
-        Content = new javax.swing.JPanel();
+        TitleBar = new javax.swing.JPanel();
+        DirLabel = new javax.swing.JLabel();
+        DirectorioPathLabel = new javax.swing.JLabel();
+        ContentBar = new javax.swing.JPanel();
+        PanelComandos = new javax.swing.JPanel();
+        SideBar = new javax.swing.JPanel();
+        SeleccionarDirectorioBoton = new javax.swing.JButton();
+        Titulo = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        BotonVerComandos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        Sidebar.setBackground(new java.awt.Color(0, 23, 31));
+        TitleBar.setBackground(new java.awt.Color(255, 255, 255));
 
-        SeleccionarDirBoton.setBackground(new java.awt.Color(0, 23, 31));
-        SeleccionarDirBoton.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        SeleccionarDirBoton.setForeground(new java.awt.Color(255, 255, 255));
-        SeleccionarDirBoton.setText("SELECCIONAR DIRECTORIO");
-        SeleccionarDirBoton.setBorder(null);
-        SeleccionarDirBoton.setBorderPainted(false);
-        SeleccionarDirBoton.setContentAreaFilled(false);
-        SeleccionarDirBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeleccionarDirBotonActionPerformed(evt);
+        DirLabel.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        DirLabel.setForeground(new java.awt.Color(0, 0, 0));
+        DirLabel.setText("Directorio:");
+
+        DirectorioPathLabel.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        DirectorioPathLabel.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout TitleBarLayout = new javax.swing.GroupLayout(TitleBar);
+        TitleBar.setLayout(TitleBarLayout);
+        TitleBarLayout.setHorizontalGroup(
+            TitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TitleBarLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(DirLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DirectorioPathLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+        TitleBarLayout.setVerticalGroup(
+            TitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TitleBarLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(TitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DirectorioPathLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DirLabel))
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+
+        ContentBar.setBackground(new java.awt.Color(239, 240, 246));
+        ContentBar.setPreferredSize(new java.awt.Dimension(1230, 620));
+
+        PanelComandos.setBackground(new java.awt.Color(239, 240, 246));
+
+        javax.swing.GroupLayout PanelComandosLayout = new javax.swing.GroupLayout(PanelComandos);
+        PanelComandos.setLayout(PanelComandosLayout);
+        PanelComandosLayout.setHorizontalGroup(
+            PanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        PanelComandosLayout.setVerticalGroup(
+            PanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout ContentBarLayout = new javax.swing.GroupLayout(ContentBar);
+        ContentBar.setLayout(ContentBarLayout);
+        ContentBarLayout.setHorizontalGroup(
+            ContentBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentBarLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(PanelComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        ContentBarLayout.setVerticalGroup(
+            ContentBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentBarLayout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(PanelComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        SideBar.setBackground(new java.awt.Color(0, 97, 247));
+
+        SeleccionarDirectorioBoton.setBackground(new java.awt.Color(0, 97, 247));
+        SeleccionarDirectorioBoton.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        SeleccionarDirectorioBoton.setForeground(new java.awt.Color(255, 255, 255));
+        SeleccionarDirectorioBoton.setText("Seleccionar Directorio");
+        SeleccionarDirectorioBoton.setBorder(null);
+        SeleccionarDirectorioBoton.setContentAreaFilled(false);
+        SeleccionarDirectorioBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SeleccionarDirectorioBotonMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout SidebarLayout = new javax.swing.GroupLayout(Sidebar);
-        Sidebar.setLayout(SidebarLayout);
-        SidebarLayout.setHorizontalGroup(
-            SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SeleccionarDirBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-        );
-        SidebarLayout.setVerticalGroup(
-            SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SidebarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(SeleccionarDirBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        Titulo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        Titulo.setText("Administrador de GIT gráfico");
 
-        TituloContainer.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setBackground(new java.awt.Color(239, 240, 246));
+        jSeparator1.setForeground(new java.awt.Color(239, 240, 246));
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jLabel1.setText("Git Graphic Manager");
+        BotonVerComandos.setBackground(new java.awt.Color(0, 97, 247));
+        BotonVerComandos.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        BotonVerComandos.setForeground(new java.awt.Color(255, 255, 255));
+        BotonVerComandos.setText("Ver Comandos");
+        BotonVerComandos.setBorder(null);
+        BotonVerComandos.setContentAreaFilled(false);
+        BotonVerComandos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonVerComandosMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout TituloContainerLayout = new javax.swing.GroupLayout(TituloContainer);
-        TituloContainer.setLayout(TituloContainerLayout);
-        TituloContainerLayout.setHorizontalGroup(
-            TituloContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TituloContainerLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        TituloContainerLayout.setVerticalGroup(
-            TituloContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TituloContainerLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-
-        MainBarContainer.setBackground(new java.awt.Color(0, 52, 89));
-
-        DirectorioLabel.setBackground(new java.awt.Color(255, 255, 255));
-        DirectorioLabel.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        DirectorioLabel.setForeground(new java.awt.Color(255, 255, 255));
-        DirectorioLabel.setText("Directorio:");
-
-        RutaDirectorio.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
-        RutaDirectorio.setForeground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout MainBarContainerLayout = new javax.swing.GroupLayout(MainBarContainer);
-        MainBarContainer.setLayout(MainBarContainerLayout);
-        MainBarContainerLayout.setHorizontalGroup(
-            MainBarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainBarContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(DirectorioLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RutaDirectorio, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
+        javax.swing.GroupLayout SideBarLayout = new javax.swing.GroupLayout(SideBar);
+        SideBar.setLayout(SideBarLayout);
+        SideBarLayout.setHorizontalGroup(
+            SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SeleccionarDirectorioBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(SideBarLayout.createSequentialGroup()
+                .addGroup(SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1))
+                    .addGroup(SideBarLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(Titulo)
+                        .addGap(0, 27, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(BotonVerComandos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        MainBarContainerLayout.setVerticalGroup(
-            MainBarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainBarContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(MainBarContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DirectorioLabel)
-                    .addComponent(RutaDirectorio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-
-        Content.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
-        Content.setLayout(ContentLayout);
-        ContentLayout.setHorizontalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
-        );
-        ContentLayout.setVerticalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+        SideBarLayout.setVerticalGroup(
+            SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addComponent(BotonVerComandos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
+                .addComponent(SeleccionarDirectorioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
@@ -138,21 +174,24 @@ public class MainView extends javax.swing.JFrame {
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(Sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TituloContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MainBarContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(SideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addGap(245, 245, 245)
+                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TitleBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ContentBar, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(TituloContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(MainBarContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(TitleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ContentBar, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE))
+            .addComponent(SideBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,12 +208,30 @@ public class MainView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SeleccionarDirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarDirBotonActionPerformed
+    private void SeleccionarDirectorioBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SeleccionarDirectorioBotonMouseClicked
         // TODO add your handling code here:
-        String seleccion = SelectDir.seleccion();
-        RutaDirectorio.setText(seleccion);
-    }//GEN-LAST:event_SeleccionarDirBotonActionPerformed
+        SelectDir.seleccion();
+        String DirPath = SelectDir.getDirectorio();
+        System.out.println(DirPath);
+        DirectorioPathLabel.setText(DirPath);
+    }//GEN-LAST:event_SeleccionarDirectorioBotonMouseClicked
 
+    private void BotonVerComandosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonVerComandosMouseClicked
+        PanelComandos.setVisible(true);
+        LeerComandos Lector = new LeerComandos();
+        try {
+            String [][] comandos = Lector.ListarComandos();
+            for(int i = 0; i < comandos.length; i++){
+                for (int j = 0; j < 4; j++){
+                    System.out.println(comandos[i][j]);
+                }
+            }
+        } catch (ParametroInvalidoException ex) {
+            System.out.println("Error" +
+                               ex.getLocalizedMessage());
+        }
+    }//GEN-LAST:event_BotonVerComandosMouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -212,13 +269,15 @@ public class MainView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
-    private javax.swing.JPanel Content;
-    private javax.swing.JLabel DirectorioLabel;
-    private javax.swing.JPanel MainBarContainer;
-    private javax.swing.JLabel RutaDirectorio;
-    private javax.swing.JButton SeleccionarDirBoton;
-    private javax.swing.JPanel Sidebar;
-    private javax.swing.JPanel TituloContainer;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton BotonVerComandos;
+    private javax.swing.JPanel ContentBar;
+    private javax.swing.JLabel DirLabel;
+    private javax.swing.JLabel DirectorioPathLabel;
+    private javax.swing.JPanel PanelComandos;
+    private javax.swing.JButton SeleccionarDirectorioBoton;
+    private javax.swing.JPanel SideBar;
+    private javax.swing.JPanel TitleBar;
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

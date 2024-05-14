@@ -24,13 +24,15 @@ public class CreateDB {
         String CrearParametros = "CREATE TABLE IF NOT EXISTS Parametro(" +
                                  "param_id INTEGER PRIMARY KEY NOT NULL," +
                                  "param_nombre VARCHAR(45) NOT NULL," + 
-                                 "param_sintaxis_larga VARCHAR(45) NOT NULL," + 
+                                 "param_desc MEDIUMTEXT NOT NULL," +    
+                                 "param_sintaxis_larga VARCHAR(45) NULL," + 
                                  "param_sintaxis_corta VARCHAR(45) NULL);";
         
         String CrearContenido = "CREATE TABLE IF NOT EXISTS Contenido(" +
                                 "con_param_id INTEGER PRIMARY KEY NOT NULL," +
                                 "con_info_necesaria VARCHAR(45) NOT NULL," +
-                                "con_tipo VARCHAR(45) NOT NULL," +
+                                "con_tipo VARCHAR(45) NOT NULL,"
+                                + "con_select VARCHAR(100) NULL," +
                                 "FOREIGN KEY(con_param_id) references PARAMETRO(param_id));";
         
         String CrearParametroComando = "CREATE TABLE IF NOT EXISTS ParametroComando(" +

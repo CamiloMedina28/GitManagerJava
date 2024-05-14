@@ -5,10 +5,7 @@
 package camilo_medina.gitmanager.DBAdmin;
 import java.sql.SQLException;
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.PreparedStatement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +20,6 @@ public class DropTables {
             try {
                 Consulta += i;
                 PreparedStatement DropSentence = conexion.prepareStatement(Consulta);
-                System.out.println(DropSentence);
                 DropSentence.executeUpdate();
             } catch (SQLException ex) {
                 System.out.println("No fue posible la eliminación de las tablas"

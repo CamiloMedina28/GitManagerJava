@@ -41,9 +41,10 @@ public class GitManager {
         }
     }
     
-    public static void Interfaz(){
+    private static void Interfaz(){
         MainView InterfazGrafica = new MainView();
         InterfazGrafica.setVisible(true);
         InterfazGrafica.setLocationRelativeTo(null);
     }
+    
 }
