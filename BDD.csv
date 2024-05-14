@@ -1,0 +1,2 @@
+﻿com_id;com_nombre;com_sintaxis;com_desc
+1;Inicializar repositorio;git init;Sentencia para la inicialización de un repositorio
