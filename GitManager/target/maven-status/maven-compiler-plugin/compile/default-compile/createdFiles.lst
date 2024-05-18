@@ -1,13 +1,16 @@
 camilo_medina\gitmanager\DBAdmin\ParametroInvalidoException.class
+camilo_medina\gitmanager\GUI\MainView$6.class
 camilo_medina\gitmanager\DBAdmin\ComprobarParametros.class
 camilo_medina\gitmanager\DBAdmin\LeerComandos.class
 camilo_medina\gitmanager\GitManager.class
 camilo_medina\gitmanager\DBAdmin\AsociarParametosComandos.class
 camilo_medina\gitmanager\GUI\MainView$3.class
+camilo_medina\gitmanager\GUI\MainView$4.class
 camilo_medina\gitmanager\DBAdmin\DropTables.class
 camilo_medina\gitmanager\DBAdmin\CrearComando.class
 camilo_medina\gitmanager\DBAdmin\CreateDB.class
 camilo_medina\gitmanager\execCommand\SelectDir.class
+camilo_medina\gitmanager\GUI\MainView$5.class
 camilo_medina\gitmanager\GUI\MainView$2.class
 camilo_medina\gitmanager\GUI\MainView.class
 camilo_medina\gitmanager\DBAdmin\CrearParametro.class

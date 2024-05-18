@@ -6,13 +6,15 @@ package camilo_medina.gitmanager.GUI;
 import camilo_medina.gitmanager.execCommand.SelectDir;
 import camilo_medina.gitmanager.DBAdmin.LeerComandos;
 import camilo_medina.gitmanager.DBAdmin.ParametroInvalidoException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Camilo Medina
  */
 public class MainView extends javax.swing.JFrame {
-
+    
+    
     /**
      * Creates new form MainView
      */
@@ -34,12 +36,23 @@ public class MainView extends javax.swing.JFrame {
         DirLabel = new javax.swing.JLabel();
         DirectorioPathLabel = new javax.swing.JLabel();
         ContentBar = new javax.swing.JPanel();
+        EjecutarComandos = new javax.swing.JPanel();
+        EjecutarComandosLabel = new javax.swing.JLabel();
+        VistaGrafica = new javax.swing.JPanel();
+        VistaGraficaLabel = new javax.swing.JLabel();
+        Informacion = new javax.swing.JPanel();
+        InfoLabel = new javax.swing.JLabel();
         PanelComandos = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabla = new javax.swing.JTable();
         SideBar = new javax.swing.JPanel();
-        SeleccionarDirectorioBoton = new javax.swing.JButton();
         Titulo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         BotonVerComandos = new javax.swing.JButton();
+        SeleccionarDirectorioBoton = new javax.swing.JButton();
+        BotonVistaGrafica = new javax.swing.JButton();
+        Info = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -62,7 +75,7 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(DirLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DirectorioPathLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TitleBarLayout.setVerticalGroup(
             TitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,55 +84,127 @@ public class MainView extends javax.swing.JFrame {
                 .addGroup(TitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(DirectorioPathLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DirLabel))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         ContentBar.setBackground(new java.awt.Color(239, 240, 246));
         ContentBar.setPreferredSize(new java.awt.Dimension(1230, 620));
+        ContentBar.setLayout(new java.awt.CardLayout());
+
+        EjecutarComandos.setBackground(new java.awt.Color(239, 240, 246));
+
+        EjecutarComandosLabel.setText("Ejecutar comandos");
+
+        javax.swing.GroupLayout EjecutarComandosLayout = new javax.swing.GroupLayout(EjecutarComandos);
+        EjecutarComandos.setLayout(EjecutarComandosLayout);
+        EjecutarComandosLayout.setHorizontalGroup(
+            EjecutarComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EjecutarComandosLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(EjecutarComandosLabel)
+                .addContainerGap(899, Short.MAX_VALUE))
+        );
+        EjecutarComandosLayout.setVerticalGroup(
+            EjecutarComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EjecutarComandosLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(EjecutarComandosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(750, Short.MAX_VALUE))
+        );
+
+        ContentBar.add(EjecutarComandos, "card3");
+
+        VistaGrafica.setBackground(new java.awt.Color(239, 240, 246));
+
+        VistaGraficaLabel.setText("Vista Gráfica");
+
+        javax.swing.GroupLayout VistaGraficaLayout = new javax.swing.GroupLayout(VistaGrafica);
+        VistaGrafica.setLayout(VistaGraficaLayout);
+        VistaGraficaLayout.setHorizontalGroup(
+            VistaGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VistaGraficaLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(VistaGraficaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(905, Short.MAX_VALUE))
+        );
+        VistaGraficaLayout.setVerticalGroup(
+            VistaGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VistaGraficaLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(VistaGraficaLabel)
+                .addContainerGap(768, Short.MAX_VALUE))
+        );
+
+        ContentBar.add(VistaGrafica, "card4");
+
+        Informacion.setBackground(new java.awt.Color(239, 240, 246));
+
+        InfoLabel.setText("Información");
+
+        javax.swing.GroupLayout InformacionLayout = new javax.swing.GroupLayout(Informacion);
+        Informacion.setLayout(InformacionLayout);
+        InformacionLayout.setHorizontalGroup(
+            InformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InformacionLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(InfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(862, Short.MAX_VALUE))
+        );
+        InformacionLayout.setVerticalGroup(
+            InformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InformacionLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(InfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(741, Short.MAX_VALUE))
+        );
+
+        ContentBar.add(Informacion, "card5");
 
         PanelComandos.setBackground(new java.awt.Color(239, 240, 246));
+        PanelComandos.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setText("Comandos disponibles");
+
+        Tabla.setBackground(new java.awt.Color(239, 240, 246));
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "Descripción", "Acción"
+            }
+        ));
+        Tabla.setGridColor(new java.awt.Color(239, 240, 246));
+        jScrollPane1.setViewportView(Tabla);
 
         javax.swing.GroupLayout PanelComandosLayout = new javax.swing.GroupLayout(PanelComandos);
         PanelComandos.setLayout(PanelComandosLayout);
         PanelComandosLayout.setHorizontalGroup(
             PanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(PanelComandosLayout.createSequentialGroup()
+                .addGroup(PanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelComandosLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelComandosLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 929, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         PanelComandosLayout.setVerticalGroup(
             PanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(PanelComandosLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout ContentBarLayout = new javax.swing.GroupLayout(ContentBar);
-        ContentBar.setLayout(ContentBarLayout);
-        ContentBarLayout.setHorizontalGroup(
-            ContentBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ContentBarLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(PanelComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        ContentBarLayout.setVerticalGroup(
-            ContentBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ContentBarLayout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(PanelComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        ContentBar.add(PanelComandos, "card2");
+        PanelComandos.setVisible(false);
 
         SideBar.setBackground(new java.awt.Color(0, 97, 247));
-
-        SeleccionarDirectorioBoton.setBackground(new java.awt.Color(0, 97, 247));
-        SeleccionarDirectorioBoton.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        SeleccionarDirectorioBoton.setForeground(new java.awt.Color(255, 255, 255));
-        SeleccionarDirectorioBoton.setText("Seleccionar Directorio");
-        SeleccionarDirectorioBoton.setBorder(null);
-        SeleccionarDirectorioBoton.setContentAreaFilled(false);
-        SeleccionarDirectorioBoton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SeleccionarDirectorioBotonMouseClicked(evt);
-            }
-        });
 
         Titulo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         Titulo.setText("Administrador de GIT gráfico");
@@ -138,23 +223,67 @@ public class MainView extends javax.swing.JFrame {
                 BotonVerComandosMouseClicked(evt);
             }
         });
+        BotonVerComandos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonVerComandosActionPerformed(evt);
+            }
+        });
+
+        SeleccionarDirectorioBoton.setBackground(new java.awt.Color(0, 97, 247));
+        SeleccionarDirectorioBoton.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        SeleccionarDirectorioBoton.setForeground(new java.awt.Color(255, 255, 255));
+        SeleccionarDirectorioBoton.setText("Seleccionar Directorio");
+        SeleccionarDirectorioBoton.setBorder(null);
+        SeleccionarDirectorioBoton.setContentAreaFilled(false);
+        SeleccionarDirectorioBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SeleccionarDirectorioBotonMouseClicked(evt);
+            }
+        });
+
+        BotonVistaGrafica.setBackground(new java.awt.Color(0, 97, 247));
+        BotonVistaGrafica.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        BotonVistaGrafica.setForeground(new java.awt.Color(255, 255, 255));
+        BotonVistaGrafica.setText("Vista Gráfica");
+        BotonVistaGrafica.setToolTipText("");
+        BotonVistaGrafica.setBorder(null);
+        BotonVistaGrafica.setContentAreaFilled(false);
+        BotonVistaGrafica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonVistaGraficaActionPerformed(evt);
+            }
+        });
+
+        Info.setBackground(new java.awt.Color(0, 97, 247));
+        Info.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        Info.setForeground(new java.awt.Color(255, 255, 255));
+        Info.setText("Información Adicional");
+        Info.setBorder(null);
+        Info.setContentAreaFilled(false);
+        Info.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InfoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SideBarLayout = new javax.swing.GroupLayout(SideBar);
         SideBar.setLayout(SideBarLayout);
         SideBarLayout.setHorizontalGroup(
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SeleccionarDirectorioBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(SideBarLayout.createSequentialGroup()
                 .addGroup(SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator1))
+                    .addComponent(BotonVerComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(SeleccionarDirectorioBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(SideBarLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(Titulo)
                         .addGap(0, 27, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(BotonVerComandos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BotonVistaGrafica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Info, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         SideBarLayout.setVerticalGroup(
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,10 +292,15 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
+                .addGap(129, 129, 129)
+                .addComponent(SeleccionarDirectorioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(BotonVerComandos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
-                .addComponent(SeleccionarDirectorioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(BotonVistaGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Info, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(549, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
@@ -174,24 +308,20 @@ public class MainView extends javax.swing.JFrame {
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TitleBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ContentBar, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(SideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(ContentBar, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(BackgroundLayout.createSequentialGroup()
+                .addGap(244, 244, 244)
+                .addComponent(TitleBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(TitleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ContentBar, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE))
-            .addComponent(SideBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(140, 140, 140)
+                .addComponent(ContentBar, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(TitleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,11 +332,40 @@ public class MainView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotonVerComandosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonVerComandosMouseClicked
+        DefaultTableModel modelo;
+        LeerComandos Lector = new LeerComandos();
+        modelo = (DefaultTableModel) Tabla.getModel();
+        for (int j = 0; j < Tabla.getRowCount(); j++){
+            modelo.removeRow(j);
+            j -= 1;
+        }
+        try {
+            String [][] comandos = Lector.ListarComandos();
+            Object [] DatosFila = new Object[3];
+            for(int i = 0; i < comandos.length; i++){
+                DatosFila[0] = comandos[i][0];
+                DatosFila[1] = comandos[i][1];
+                DatosFila[2] = comandos[i][2];
+                System.out.println(DatosFila[0]);
+                modelo.addRow(DatosFila);
+            }
+            Tabla.setModel(modelo);
+        } catch (ParametroInvalidoException ex) {
+            System.out.println("Error" +
+                ex.getLocalizedMessage());
+        }
+        ContentBar.removeAll();
+        ContentBar.add(PanelComandos);
+        ContentBar.repaint();
+        ContentBar.revalidate();
+    }//GEN-LAST:event_BotonVerComandosMouseClicked
 
     private void SeleccionarDirectorioBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SeleccionarDirectorioBotonMouseClicked
         // TODO add your handling code here:
@@ -216,22 +375,26 @@ public class MainView extends javax.swing.JFrame {
         DirectorioPathLabel.setText(DirPath);
     }//GEN-LAST:event_SeleccionarDirectorioBotonMouseClicked
 
-    private void BotonVerComandosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonVerComandosMouseClicked
-        PanelComandos.setVisible(true);
-        LeerComandos Lector = new LeerComandos();
-        try {
-            String [][] comandos = Lector.ListarComandos();
-            for(int i = 0; i < comandos.length; i++){
-                for (int j = 0; j < 4; j++){
-                    System.out.println(comandos[i][j]);
-                }
-            }
-        } catch (ParametroInvalidoException ex) {
-            System.out.println("Error" +
-                               ex.getLocalizedMessage());
-        }
-    }//GEN-LAST:event_BotonVerComandosMouseClicked
-    
+    private void BotonVerComandosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVerComandosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonVerComandosActionPerformed
+
+    private void BotonVistaGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVistaGraficaActionPerformed
+        // TODO add your handling code here:
+        ContentBar.removeAll();
+        ContentBar.add(VistaGrafica);
+        ContentBar.repaint();
+        ContentBar.revalidate();
+    }//GEN-LAST:event_BotonVistaGraficaActionPerformed
+
+    private void InfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoActionPerformed
+        // TODO add your handling code here:
+        ContentBar.removeAll();
+        ContentBar.add(Informacion);
+        ContentBar.repaint();
+        ContentBar.revalidate();
+    }//GEN-LAST:event_InfoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -270,14 +433,25 @@ public class MainView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JButton BotonVerComandos;
+    private javax.swing.JButton BotonVistaGrafica;
     private javax.swing.JPanel ContentBar;
     private javax.swing.JLabel DirLabel;
     private javax.swing.JLabel DirectorioPathLabel;
+    private javax.swing.JPanel EjecutarComandos;
+    private javax.swing.JLabel EjecutarComandosLabel;
+    private javax.swing.JButton Info;
+    private javax.swing.JLabel InfoLabel;
+    private javax.swing.JPanel Informacion;
     private javax.swing.JPanel PanelComandos;
     private javax.swing.JButton SeleccionarDirectorioBoton;
     private javax.swing.JPanel SideBar;
+    private javax.swing.JTable Tabla;
     private javax.swing.JPanel TitleBar;
     private javax.swing.JLabel Titulo;
+    private javax.swing.JPanel VistaGrafica;
+    private javax.swing.JLabel VistaGraficaLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
